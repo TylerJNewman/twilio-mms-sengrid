@@ -85,6 +85,8 @@ app.post('/sms', (req, res) => {
 
     const attachment = base64Encode('hello.png')
 
+    console.log(attachment)
+
     const requestBody = {
       personalizations: [{to: [{email: process.env.TO_EMAIL_ADDRESS}]}],
       from: {email: process.env.FROM_EMAIL_ADDRESS},
