@@ -81,9 +81,11 @@ app.post('/sms', async (req, res) => {
 
     //     ))
 
-    function base64Encode(file) {
+    async function base64Encode(file) {
       // const body = fs.readFileSync(file)
-      return Buffer.from(url).toString('base64')
+      const response = await got(url, {responseType: 'buffer'})
+      const buffer = response.body
+      return Buffer.from(buffer).toString('base64')
     }
 
     const attachment = await base64Encode('hello.png')
