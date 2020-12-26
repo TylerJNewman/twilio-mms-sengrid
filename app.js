@@ -19,7 +19,7 @@ app.get('/sms', (req, res) => {
   const filename = `hello.png`
   function base64Encode(file) {
     const body = fs.readFileSync(file)
-    return new Buffer(body).toString('base64')
+    return Buffer.alloc(body).toString('base64')
   }
 
   const attachment = base64Encode('hello.png')
@@ -80,7 +80,7 @@ app.post('/sms', (req, res) => {
 
     function base64Encode(file) {
       const body = fs.readFileSync(file)
-      return new Buffer(body).toString('base64')
+      return Buffer.alloc(body).toString('base64')
     }
 
     const attachment = base64Encode('hello.png')
