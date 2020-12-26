@@ -2675,7 +2675,7 @@ twilio-run@^2.6.0:
     wrap-ansi "^5.1.0"
     yargs "^13.2.2"
 
-twilio@^3.33.0, twilio@^3.43.1:
+twilio@^3.33.0, twilio@^3.43.1, twilio@^3.54.1:
   version "3.54.1"
   resolved "https://registry.yarnpkg.com/twilio/-/twilio-3.54.1.tgz#d42be0a920d618f756faba46306a69c987f05813"
   integrity sha512-rUlEGFNAmmnaxYsWvoTib77eycOCIfncveh6SvP3+RbbKpos2wuzhLy0p1gm8FQSAZvjAm2xNVWi5oJRRF8Ueg==
