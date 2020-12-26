@@ -74,63 +74,63 @@ app.post('/sms', async (req, res) => {
     const url = req.body.MediaUrl0
 
     // Download the image.
-    request(url)
-      .pipe(fs.createWriteStream(filename))
-      .on('close', () => {
-        console.log('Image downloaded.'}
-        function base64Encode(file) {
-          const body = fs.readFileSync(file)
-          return Buffer.from(body).toString('base64')
-        }
-    
-        const attachment = base64Encode('hello.png')
-    
-        console.log('base64Encoded...', {attachment})
-    
-        const requestBody = {
-          personalizations: [{to: [{email: process.env.TO_EMAIL_ADDRESS}]}],
-          from: {email: process.env.FROM_EMAIL_ADDRESS},
-          subject: `New SMS message from: Tyler`,
-          content: [
-            {
-              type: 'text/plain',
-              value: 'hello',
-            },
-          ],
-          attachments: [
-            {
-              content: attachment,
-              filename,
-              // type: 'image/png',
-              disposition: 'attachment',
-            },
-          ],
-        }
-    
-        got
-          .post('https://api.sendgrid.com/v3/mail/send', {
-            headers: {
-              Authorization: `Bearer ${process.env.SENDGRID_API_KEY}`,
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(requestBody),
-          })
-          .then((response) => {
-            // let twiml = new MessagingResponse()
-          })
-          .catch((err) => {
-            console.log(err)
-          })
-    
-        twiml.message('Thanks for the image!')
-      } else {
-        twiml.message('Try sending a picture message.')
-      }
-    
-      res.send(twiml.toString())
-        ))
+    // request(url)
+    //   .pipe(fs.createWriteStream(filename))
+    //   .on('close', () => {
+    //     console.log('Image downloaded.'}
 
+    //     ))
 
+    function base64Encode(file) {
+      // const body = fs.readFileSync(file)
+      return Buffer.from(url).toString('base64')
+    }
+
+    const attachment = await base64Encode('hello.png')
+
+    console.log('base64Encoded...', {attachment})
+
+    const requestBody = {
+      personalizations: [{to: [{email: process.env.TO_EMAIL_ADDRESS}]}],
+      from: {email: process.env.FROM_EMAIL_ADDRESS},
+      subject: `New SMS message from: Tyler`,
+      content: [
+        {
+          type: 'text/plain',
+          value: 'hello',
+        },
+      ],
+      attachments: [
+        {
+          content: attachment,
+          filename,
+          // type: 'image/png',
+          disposition: 'attachment',
+        },
+      ],
+    }
+
+    got
+      .post('https://api.sendgrid.com/v3/mail/send', {
+        headers: {
+          Authorization: `Bearer ${process.env.SENDGRID_API_KEY}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(requestBody),
+      })
+      .then((response) => {
+        // let twiml = new MessagingResponse()
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+
+    twiml.message('Thanks for the image!')
+  } else {
+    twiml.message('Try sending a picture message.')
+  }
+
+  res.send(twiml.toString())
 })
 
 app.listen(process.env.PORT || 3000, () =>
