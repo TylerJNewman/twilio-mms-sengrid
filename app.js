@@ -53,7 +53,7 @@ app.get('/sms', (req, res) => {
       body: JSON.stringify(requestBody),
     })
     .then((response) => {
-      let twiml = new MessagingResponse()
+      // let twiml = new MessagingResponse()
     })
     .catch((err) => {
       console.log(err)
@@ -114,7 +114,7 @@ app.post('/sms', (req, res) => {
         body: JSON.stringify(requestBody),
       })
       .then((response) => {
-        let twiml = new MessagingResponse()
+        // let twiml = new MessagingResponse()
       })
       .catch((err) => {
         console.log(err)
