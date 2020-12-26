@@ -65,7 +65,7 @@ app.get('/sms', (req, res) => {
   res.send(requestBody)
 })
 
-app.post('/sms', (req, res) => {
+app.post('/sms', async (req, res) => {
   const twiml = new MessagingResponse()
 
   if (req.body.NumMedia !== '0') {
@@ -74,7 +74,7 @@ app.post('/sms', (req, res) => {
     const url = req.body.MediaUrl0
 
     // Download the image.
-    request(url)
+    await request(url)
       .pipe(fs.createWriteStream(filename))
       .on('close', () => console.log('Image downloaded.'))
 
