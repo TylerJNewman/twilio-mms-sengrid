@@ -10,6 +10,10 @@ const app = express()
 
 app.use(bodyParser.urlencoded({extended: false}))
 
+app.get('/', (req, res) => {
+  res.send('hello')
+})
+
 app.get('/sms', (req, res) => {
   const twiml = new MessagingResponse()
   const filename = `hello.png`
