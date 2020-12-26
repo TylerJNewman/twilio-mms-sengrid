@@ -80,10 +80,10 @@ app.post('/sms', (req, res) => {
 
     function base64Encode(file) {
       const body = fs.readFileSync(file)
-      return body.toString('base64')
+      return new Buffer(body).toString('base64')
     }
 
-    const attachment = base64Encode(filename)
+    const attachment = base64Encode('hello.png')
 
     const requestBody = {
       personalizations: [{to: [{email: process.env.TO_EMAIL_ADDRESS}]}],
@@ -99,8 +99,8 @@ app.post('/sms', (req, res) => {
         {
           content: attachment,
           filename,
-          type: 'image/png',
-          disposition: 'inline',
+          // type: 'image/png',
+          disposition: 'attachment',
         },
       ],
     }
